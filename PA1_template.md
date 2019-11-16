@@ -113,7 +113,9 @@ print(s1)
 ### Plot time series of averages
 
 ```r
-p2 <- ggplot(s1, aes(x=date, y=means, na.rm=TRUE )) + geom_bar(stat="identity", color="dark blue", fill="steelblue4")
+p2 <- ggplot(s1, aes(x=date, y=means, na.rm=TRUE )) + 
+  geom_bar(stat="identity", color="dark blue", fill="steelblue4") +
+  ggtitle("Average Number of Steps - Day")
 print(p2)
 ```
 
