@@ -85,15 +85,17 @@ PAdata_new$steps <- newSet
 
 ### Panel Graph for weekday and weekend average steps by Interval
 ```{r echo=TRUE}
-PAdata_int <- PAdata %>% mutate(Weekday=ifelse(weekdays(date)=="Saturday" |
-                                                 weekdays(date)=="Sunday",0,1))
+PAdata_int <- PAdata %>% mutate(DayType=ifelse(weekdays(date)=="Saturday" |
+                                                 weekdays(date)=="Sunday",'Weekend','Weekday'))
 PAdata_summ <- PAdata_int %>% 
-  group_by(interval, Weekday) %>% 
+  group_by(interval, DayType) %>% 
   summarize(AverageSteps=mean(steps, na.rm=TRUE))
-wkdayPlot <- ggplot(filter(PAdata_summ,Weekday==1),aes(x=interval, y=AverageSteps))+
-                      geom_line(col="dark blue")+ylab("Weekday Average Steps")
-wkendPlot <- ggplot(filter(PAdata_summ,Weekday==0),aes(x=interval, y=AverageSteps))+
-                      geom_line(col="dark red")+ylab("Weekend Average Steps")
-grid.arrange(wkdayPlot, wkendPlot, nrow=2)
+par(mai=c(1,0.8,0.5,0.5), mfrow=c(2,1))
+
+with(filter(PAdata_summ, DayType=='Weekend'), 
+     plot(x=interval, y=AverageSteps, type="l", main="Weekend", ylab="", cex.main=0.9, xlab=""))
+with(filter(PAdata_summ, DayType=='Weekday'), 
+     plot(x=interval, y=AverageSteps, type="l", main="Weekday", ylab="", cex.main=0.9, xlab="Interval"))
+
 ```
 
