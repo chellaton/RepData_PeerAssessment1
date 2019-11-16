@@ -173,12 +173,14 @@ PAdata_int <- PAdata %>% mutate(DayType=ifelse(weekdays(date)=="Saturday" |
 PAdata_summ <- PAdata_int %>% 
   group_by(interval, DayType) %>% 
   summarize(AverageSteps=mean(steps, na.rm=TRUE))
-par(mai=c(1,0.8,0.5,0.5), mfrow=c(2,1))
+par(mai=c(1,0.8,0.4,0.2), mfrow=c(2,1))
 
 with(filter(PAdata_summ, DayType=='Weekend'), 
-     plot(x=interval, y=AverageSteps, type="l", main="Weekend", ylab="", cex.main=0.9, xlab=""))
+     plot(x=interval, y=AverageSteps, type="l", main="Weekend", ylab="", 
+          cex.main=0.9, xlab="", cex.axis=0.8, ylim=c(0,250)))
 with(filter(PAdata_summ, DayType=='Weekday'), 
-     plot(x=interval, y=AverageSteps, type="l", main="Weekday", ylab="", cex.main=0.9, xlab="Interval"))
+     plot(x=interval, y=AverageSteps, type="l", main="Weekday", ylab="", 
+          cex.main=0.9, xlab="Interval", cex.axis=0.8, ylim=c(0,250)))
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->

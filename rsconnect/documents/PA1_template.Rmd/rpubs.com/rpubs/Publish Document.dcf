@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/550410/51301721d9aa436d8f38322612eaedda
+bundleId: https://api.rpubs.com/api/v1/document/550410/51301721d9aa436d8f38322612eaedda
+url: http://rpubs.com/chellaton/550410
+when: 1573944867.73023
